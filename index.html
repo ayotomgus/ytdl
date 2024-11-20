@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유튜브 영상 다운로더</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; }
+        #url-input { width: 100%; padding: 10px; margin-bottom: 10px; }
+        #submit-btn { width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        #instructions { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>유튜브 영상 다운로더</h1>
+    <input type="text" id="url-input" placeholder="유튜브 영상 URL을 입력하세요">
+    <button id="submit-btn">다운로드 명령어 생성</button>
+    <div id="result"></div>
+    <div id="instructions">
+        <h2>사용 방법:</h2>
+        <ol>
+            <li>위 입력창에 유튜브 영상 URL을 붙여넣기 합니다.</li>
+            <li>'다운로드 명령어 생성' 버튼을 클릭합니다.</li>
+            <li>생성된 명령어를 복사합니다.</li>
+            <li>로컬 컴퓨터의 터미널 또는 명령 프롬프트에 붙여넣기 하여 실행합니다.</li>
+        </ol>
+        <p>주의: yt-dlp가 로컬 컴퓨터에 설치되어 있어야 합니다.</p>
+    </div>
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            var url = document.getElementById('url-input').value;
+            if (url) {
+                var command = `yt-dlp "${url}"`;
+                document.getElementById('result').innerHTML = `
+                    <h3>다운로드 명령어:</h3>
+                    <pre>${command}</pre>
+                    <p>이 명령어를 터미널에 붙여넣어 실행하세요.</p>
+                `;
+            } else {
+                alert('유효한 URL을 입력해주세요.');
+            }
+        });
+    </script>
+</body>
+</html>
